@@ -37,4 +37,19 @@ class PlantillaTest {
         // Verificar el mensaje de la excepción
         assertEquals("El empleado con DNI 11111111H ya está contratado", ex.getMessage());
     }
+    
+    @Test
+    @DisplayName("Prueba para el metodo getEmpleadoporNombre()")
+    void testGetEmpleadoPorNombre() {
+        Empleado tecnico1 = new Tecnico("11111111H", "Alejandro", "Fernández", 1000.0, 1);
+        Empleado tecnico2 = new Tecnico("31111101P", "Carlos", "Pérez", 1200.0, 2);
+
+        plantilla.contratarEmpleado(tecnico1);
+        plantilla.contratarEmpleado(tecnico2);
+        
+        int numeroEmpleadosEsperados = 1;
+        String nombreBuscado = "Alejandro";
+        
+        assertEquals(numeroEmpleadosEsperados, plantilla.getEmpleadosPorNombre(nombreBuscado).size(), "El numero de empleados encontrados no coincide con el esperado");
+    }
 }
